@@ -1,0 +1,20 @@
+<%- htmlid = answer.new_record? ? "div_question_#{answer.question_id}_new_answer" : "div_answer_#{answer.id}" %>
+<div class="panel panel-info answer-panel form" id="<%= htmlid %>">
+  <%= form_for answer, remote: true, html: { class: "form-inline answer" } do |f| %>
+    <div class="panel-body">
+      <label for="comment" class="form-control inline-form-label">Answer:</label>
+
+      <%= f.text_area :content, id: :content, class: 'form-control answer-form-input', placeholder: "Your answer here" %>
+      <%= f.hidden_field :question_id %>
+      <%= f.hidden_field :user_id, value: User.offset(rand(User.count)).first.id %>
+    </div>
+    <div class="panel-footer">
+      <div class='pull-left'>
+        <%= f.submit 'Save', class: 'btn btn-primary btn-xs' %>
+        <%- cancel_kls = answer.new_record? ? 'cancel' : '' %>
+        <%- cancel_path = answer.new_record? ? '#' : answer_path(answer.id) %>
+        <%= link_to 'Cancel', cancel_path, class: "btn btn-default btn-xs #{cancel_kls}", remote: !answer.new_record? %>
+      </div><br/>
+    </div>
+  <% end %>
+</div>

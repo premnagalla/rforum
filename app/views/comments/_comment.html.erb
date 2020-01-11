@@ -1,0 +1,14 @@
+<% kls = is_nested_comment?(comment) ? 'div-inner-comment' : 'div-outer-comment' %>
+<div class="rounded border border-success <%= kls %>" id="div_comment_<%=comment.id %>">
+  <div class="row">
+    <div class="col-lg-2 comment-text-label"><%= comment.user.full_name %>:</div>
+    <div class="col-lg-7 comment-text"><%= comment.comment %></div>
+    <div class="col-lg-3 text-right comment-actions">
+      <%= link_to 'Comment', new_comment_path(comment: {commentable_type: 'Comment', commentable_id: comment.id}), class: 'btn btn-default btn-xs', remote: true %>
+      <%= link_to 'Edit', edit_comment_path(comment.id), class: 'btn btn-primary btn-xs', remote: true %>
+      <%= link_to 'Delete', comment_path(comment.id), method: :delete, class: 'btn btn-danger btn-xs', remote: true, data: {confirm: 'Are you sure?'} %>
+    </div>
+  </div>
+</div>
+
+<%= render partial: 'comments/comments', locals: { comments: comment.comments, collec_id: "comment_#{comment.id}_comments" } %>

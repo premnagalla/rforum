@@ -1,0 +1,36 @@
+<%- model_class = Question -%>
+<div class="page-header">
+  <h2><%=t '.title', default: model_class.model_name.human.titleize %></h2>
+</div>
+
+<div class="panel panel-success" id="question_<%= @question.id %>">
+  <div class="panel-heading"><h4><%= @question.title %></h4></div>
+  <div class="panel-body">
+    <%= @question.description %>
+  </div>
+  <div class="panel-footer">
+    <div class='pull-left'>
+      <%= link_to 'Answer', new_answer_path(answer: {question_id: @question.id}), class: 'btn btn-success btn-xs', remote: true %>
+      <%= link_to 'Edit', edit_question_path(@question.id), class: 'btn btn-primary btn-xs', remote: true %>
+      <%= link_to 'Comment', new_comment_path(comment: {commentable_id: @question.id, commentable_type: 'Question'}), class: 'btn btn-default btn-xs', remote: true %>
+      <%= link_to 'Back', questions_path, class: 'btn btn-info btn-xs' %>
+    </div>
+    <div class='pull-right'><%= "#{@question.user.full_name} @ #{@question.created_at}" %></div><br/>
+  </div>
+</div>
+
+<h3>Comments</h3>
+
+<%= render partial: 'comments/comments', locals: { comments: @question.comments, collec_id: "question_#{@question.id}_comments" } %>
+
+<h3>Answers</h3>
+
+<%= render partial: 'answers/answers', locals: { answers: @question.answers, collec_id: "question_#{@question.id}_answers" } %>
+
+<%= link_to t('.back', default: t("helpers.links.back")),
+              questions_path, class: 'btn btn-default'  %>
+<%= link_to t('.destroy', default: t("helpers.links.destroy")),
+              question_path(@question),
+              method: 'delete',
+              data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) },
+              class: 'btn btn-danger' %>

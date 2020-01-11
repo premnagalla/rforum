@@ -1,0 +1,23 @@
+<% kls = is_nested_comment?(comment) ? 'div-inner-comment' : 'div-outer-comment' %>
+<%- htmlid = comment.new_record? ? "div_#{comment.commentable_type.downcase}_#{comment.commentable_id}_new_comment" : "div_comment_#{comment.id}" %>
+<div class="rounded border border-success form <%= kls %>" id="<%= htmlid %>">
+  <div class="row">
+    <%= form_for comment, remote: true, html: { class: "form-inline comment" } do |f| %>
+      <div class="col-xs-2">
+        <label for="comment" class="form-control inline-form-label">Comment:</label>
+      </div>
+      <div class="col-xs-7">
+        <%= f.text_area :comment, id: :comment, class: 'form-control inline-form-input', placeholder: "Your comment here" %>
+        <%= f.hidden_field :commentable_type %>
+        <%= f.hidden_field :commentable_id %>
+        <%= f.hidden_field :user_id, value: User.offset(rand(User.count)).first.id %>
+      </div>
+      <div class="col-xs-3 text-left comment-actions padding-left-30">
+        <%= f.submit 'Save', class: 'btn btn-default btn-xs' %>
+        <%- cancel_kls = comment.new_record? ? 'cancel' : '' %>
+        <%- cancel_path = comment.new_record? ? '#' : comment_path(comment.id) %>
+        <%= link_to 'Cancel', cancel_path, class: "btn btn-primary btn-xs #{cancel_kls}", remote: !comment.new_record? %>
+      </div>
+    <% end %>
+  </div>
+</div>

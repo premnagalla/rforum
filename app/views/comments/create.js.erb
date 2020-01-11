@@ -1,0 +1,1 @@
+$("#div_<%= @comment.commentable_type.downcase %>_<%= @comment.commentable_id %>_new_comment").replaceWith("<%= escape_javascript(render partial: 'comments/comment', locals: { comment: @comment } ) %>");

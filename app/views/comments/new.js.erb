@@ -1,0 +1,2 @@
+<% target_div = "#{@comment.commentable_type.downcase}_#{@comment.commentable_id}_comments" %>
+$("#<%= target_div %>").prepend("<%= escape_javascript(render partial: 'comments/comment_form', locals: { comment: @comment } ) %>");

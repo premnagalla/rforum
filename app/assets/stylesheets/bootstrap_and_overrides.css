@@ -1,0 +1,40 @@
+/*
+  =require twitter-bootstrap-static/bootstrap
+
+  Static version of css will use Glyphicons sprites by default
+  =require twitter-bootstrap-static/sprites
+*/
+
+/* Borders */
+
+.border-bottom{ border-bottom:1px; }
+.border-top{ border-top:1px; }
+.border-left{ border-left:1px; }
+.border-right{ border-right:1px; }
+.border{ border:1px solid #dee2e6; }
+
+.border-success{ border-color: #3071a9!important;}
+/*#28a745!important; }*/
+.border-danger{ border-color: #dc3545!important; }
+.border-warning{ border-color: #ffc107!important; }
+.border-info{ border-color: #f8f9fa!important; }
+.border-dark{ border-color: #343a40!important; }
+.border-white{ border-color: #fff!important; }
+
+.rounded{ border-radius: .25rem!important }
+.clear{ clear: both; }
+
+.div-outer-comment{ margin-left:30px; margin-right:10px; }
+.div-inner-comment{ margin-left:50px;margin-right: 10px; }
+
+.answer-panel{ margin-top: 10px!important; margin-bottom: 0px!important; }
+.comments-div{ margin-bottom: 20px; }
+
+.inline-form-label{ border: none; margin-top: 8px; }
+.inline-form-input{ width: 100%!important; margin: 3px 0px; }
+.answer-form-input{ width: 88%!important; margin: 3px 0px; }
+
+.comment-actions{ margin-top: 7px; }
+.comment-text-label{ margin-top: 14px; font-weight: bold; }
+.comment-text{ margin-top: 14px; }
+.padding-left-30{ padding-left:30px; }

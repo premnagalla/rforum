@@ -1,0 +1,11 @@
+<div class="panel panel-info answer-panel" id="div_answer_<%= answer.id %>">
+  <div class="panel-body"><%= answer.content %></div>
+  <div class="panel-footer">
+    <div class='pull-left'>
+      <%= link_to 'Edit', edit_answer_path(answer.id), class: 'btn btn-primary btn-xs', remote: true %>
+      <%= link_to 'Comment', new_comment_path(comment: {commentable_id: answer.id, commentable_type: 'Answer'}), class: 'btn btn-default btn-xs', remote: true %>
+      <%= link_to 'Delete', answer_path(answer.id), method: :delete, class: 'btn btn-danger btn-xs', remote: true, data: {confirm: 'Are you sure?'} %>
+    </div>
+    <div class='pull-right'><%= "#{answer.user.full_name} @ #{answer.created_at}" %></div><br/>
+  </div>
+</div>
